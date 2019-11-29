@@ -5,13 +5,13 @@ require_relative('../models/tag.rb')
 #index
 get '/transactions' do
   @transactions = Transaction.all()
-  @merchants = Merchant.all()
-  @Tags = Tag.all()
   erb(:"transactions/index")
 end
 
-#Create
+#New
 get '/transactions/new' do
+  @merchants = Merchant.all()
+  @tags = Tag.all()
   erb(:"transactions/new")
 end
 
