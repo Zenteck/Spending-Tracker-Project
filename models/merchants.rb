@@ -13,7 +13,7 @@ class Merchant
 #Which needs brackets with a single value? this or update?
 #CREATE
   def save()
-    sql = "INSERT into merchants
+    sql = "INSERT INTO merchants
     (name) VALUES ($1)
     RETURNING id"
     values = [@name]
