@@ -6,7 +6,7 @@ class Merchant
   attr_accessor :name
 
   def initialize(info)
-    @id = info['id'].to_i() if options['id']
+    @id = info['id'].to_i() if info['id']
     @name = info['name']
   end
 
@@ -18,7 +18,7 @@ class Merchant
     RETURNING id"
     values = [@name]
     result = SqlRunner.run(sql, values)
-    @id = results[0]['id'].to_i()
+    @id = result[0]['id'].to_i()
   end
 
 #READ
@@ -43,8 +43,8 @@ class Merchant
   end
 
   def self.delete_all()
-    sql = "DELTE FROM merchants"
+    sql = "DELETE FROM merchants"
     SqlRunner.run(sql)
   end
-  
+
 end

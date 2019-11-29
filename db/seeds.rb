@@ -52,3 +52,37 @@ tag3 = Tag.new(
   }
 )
 tag3.save()
+
+
+# TRANSACTIONS
+transaction1 = Transaction.new(
+  {
+    'merchant_id' => merchant1.id(),
+    'tag_id'      => tag2.id,
+    'amount'      => 30.00
+  }
+)
+transaction1.save()
+
+transaction2 = Transaction.new(
+  {
+    'merchant_id' => merchant2.id(),
+    'tag_id'      => tag3.id,
+    'amount'      => 45.60
+  }
+)
+transaction2.save()
+
+transaction3 = Transaction.new(
+  {
+    'merchant_id' => merchant3.id(),
+    'tag_id'      => tag1.id,
+    'amount'      => 17.50
+  }
+)
+transaction3.save()
+
+
+binding.pry
+
+nil

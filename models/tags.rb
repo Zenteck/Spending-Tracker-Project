@@ -6,7 +6,7 @@ class Tag
   attr_accessor :type
 
   def initialize(info)
-    @id = info['id'].to_i() if options['id']
+    @id = info['id'].to_i() if info['id']
     @type = info['type']
   end
 
@@ -18,7 +18,7 @@ class Tag
     RETURNING id"
     values = [@type]
     result = SqlRunner.run(sql, values)
-    @id = results[0]['id'].to_i()
+    @id = result[0]['id'].to_i()
   end
 
 #READ
@@ -43,7 +43,7 @@ class Tag
   end
 
   def self.delete_all()
-    sql = "DELTE FROM tags"
+    sql = "DELETE FROM tags"
     SqlRunner.run(sql)
   end
 end
