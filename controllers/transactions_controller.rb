@@ -22,7 +22,12 @@ post '/transactions' do
   redirect to('/transactions/thanks')
 end
 
+#show
 
+#delete
+
+#edit
+#update
 get '/transactions/thanks' do
 erb(:"transactions/confirmation")
 end

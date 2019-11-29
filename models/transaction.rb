@@ -45,8 +45,9 @@ class Transaction
         transactions = SqlRunner.run(sql)
         transaction_array = transactions.map{|transaction| Transaction.new(transaction)}
         spend_array = transaction_array.map{|transaction| transaction.amount()}
-        return spend_array.inject(0){|sum,x| sum + x }
+        # return spend_array.inject(0){|sum,x| sum + x }%.2f
         #Thank you stack overflow!
+        return sprintf(%.2f, spend_array.sum)
       end
 
     #UPDATE

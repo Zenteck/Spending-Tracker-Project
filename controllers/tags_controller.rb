@@ -18,3 +18,10 @@ post '/tags' do
   tag.save()
   redirect "/tags"
 end
+
+#show
+
+#delete
+
+#edit
+#update

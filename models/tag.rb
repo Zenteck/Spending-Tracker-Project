@@ -53,4 +53,11 @@ class Tag
     sql = "DELETE FROM tags"
     SqlRunner.run(sql)
   end
+
+  #show
+
+  #delete
+
+  #edit
+  #update
 end

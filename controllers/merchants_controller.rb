@@ -12,9 +12,16 @@ get '/merchants/new' do
   erb(:"merchants/new")
 end
 
-#Create
+#Create/save
 post '/merchants' do
   merchant = Merchant.new(params)
   merchant.save()
   redirect "/merchants"
 end
+
+#show
+
+#delete
+
+#edit
+#update

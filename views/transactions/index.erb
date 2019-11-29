@@ -5,6 +5,6 @@
   <p>Merchant ID: <%= transaction.merchant_id%></p>
   <p>Purchase Tag: <%= Tag.find(transaction.tag_id).type %></p>
   <p>Tag ID: <%= transaction.tag_id %></p>
-  <p>Amount: <%= transaction.amount %></p>
+  <p>Amount: £<%= transaction.amount %></p>
 <hr/>
 <% end %>
