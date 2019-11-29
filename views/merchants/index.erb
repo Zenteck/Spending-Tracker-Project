@@ -1,0 +1,9 @@
+<h3>All the students</h3>
+<hr/>
+<% for student in @students %>
+  <p>Name: <%= student.first_name%> <%= student.last_name %> </p>
+  <p>Age: <%= student.age %></p>
+  <p>House: <%= House.find(student.house_id).name() %></p>
+  <img src="<%= House.find(student.house_id).logo() %>" alt="House Banner">
+<hr/>
+<% end %>
