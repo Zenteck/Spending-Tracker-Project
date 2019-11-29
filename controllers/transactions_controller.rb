@@ -22,12 +22,28 @@ post '/transactions' do
   redirect to('/transactions/thanks')
 end
 
-#show
-
-#delete
-
-#edit
-#update
 get '/transactions/thanks' do
 erb(:"transactions/confirmation")
 end
+
+#show
+get '/transactions/:id' do
+  id = params[:id].to_i()
+  @transaction = Transaction.find(id)
+  erb(:"Transactions/show")
+end
+
+#delete
+post '/transactions/:id/delete' do
+  id = params[:id].to_i()
+  transaction = Transaction.find(id)
+  transaction.delete()
+  redirect '/transactions/deleted'
+end
+
+get '/transactions/deleted' do
+erb(:"transactions/deleted")
+end
+
+#edit
+#update
