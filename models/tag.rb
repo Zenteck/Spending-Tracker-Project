@@ -28,6 +28,13 @@ class Tag
     return tags.map{|tag| Tag.new(tag)}
   end
 
+  def self.find(id)
+    sql = "SELECT * FROM tags WHERE id = $1"
+    values = [id]
+    tag = SqlRunner.run(sql, values)[0]
+    return Tag.new(tag)
+  end
+
 #UPDATE
   def update()
     sql = "UPDATE tags SET type = s1 WHERE id = $2"

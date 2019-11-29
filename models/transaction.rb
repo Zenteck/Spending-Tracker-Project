@@ -1,6 +1,6 @@
 require_relative('../db/sql_runner.rb')
-require_relative('./merchants.rb')
-require_relative('./tags.rb')
+require_relative('./merchant.rb')
+require_relative('./tag.rb')
 
 class Transaction
 
@@ -31,6 +31,13 @@ class Transaction
         sql = "SELECT * FROM transactions"
         transactions = SqlRunner.run(sql)
         return transactions.map{|transaction| Transaction.new(transaction)}
+      end
+
+      def self.find(id)
+        sql = "SELECT * FROM transactions WHERE id = $1"
+        values = [id]
+        transaction = SqlRunner.run(sql, values)[0]
+        return Transaction.new(transaction)
       end
 
     #UPDATE

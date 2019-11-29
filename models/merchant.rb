@@ -21,6 +21,13 @@ class Merchant
     @id = result[0]['id'].to_i()
   end
 
+  def self.find(id)
+    sql = "SELECT * FROM merchants WHERE id = $1"
+    values = [id]
+    merchant = SqlRunner.run(sql, values)[0]
+    return Merchant.new(merchant)
+  end
+
 #READ
   def self.all()
     sql = "SELECT * FROM merchants"

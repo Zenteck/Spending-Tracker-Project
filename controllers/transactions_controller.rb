@@ -1,4 +1,4 @@
-require_relative('../models/transactions')
+require_relative('../models/transaction.rb')
 
 #index
 get '/transactions' do

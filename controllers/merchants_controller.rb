@@ -1,4 +1,4 @@
-require_relative('../models/merchants.rb')
+require_relative('../models/merchant.rb')
 
 
 #index
