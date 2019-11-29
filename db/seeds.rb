@@ -1,6 +1,6 @@
-require_relative( "../models/merchants.rb" )
-require_relative( "../models/tags.rb" )
-require_relative( "../models/transactions.rb" )
+require_relative( "../models/merchant.rb" )
+require_relative( "../models/tag.rb" )
+require_relative( "../models/transaction.rb" )
 require("pry")
 
 Transaction.delete_all()
