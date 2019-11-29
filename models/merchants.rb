@@ -46,4 +46,5 @@ class Merchant
     sql = "DELTE FROM merchants"
     SqlRunner.run(sql)
   end
+  
 end
