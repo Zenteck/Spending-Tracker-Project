@@ -40,11 +40,20 @@ class Transaction
         return Transaction.new(transaction)
       end
 
+      def self.total_spend()
+        sql = "SELECT * FROM transactions"
+        transactions = SqlRunner.run(sql)
+        transaction_array = transactions.map{|transaction| Transaction.new(transaction)}
+        spend_array = transaction_array.map{|transaction| transaction.amount()}
+        return spend_array.inject(0){|sum,x| sum + x }
+        #Thank you stack overflow!
+      end
+
     #UPDATE
       def update()
         sql = "UPDATE transactions SET
         (merchant_id, tag_id, amount)
-        = (s1, $2, $3) WHERE id = $4"
+        = ($1, $2, $3) WHERE id = $4"
         values = [@merchant_id, @tag_id, @amount, @id]
         SqlRunner.run(sql, values)
       end
@@ -61,14 +70,6 @@ class Transaction
         SqlRunner.run(sql)
       end
 
-      def self.total_spend()
-        sql = "SELECT * FROM transactions"
-        transactions = SqlRunner.run(sql)
-        transaction_array = transactions.map{|transaction| Transaction.new(transaction)}
-        spend_array = transaction_array.map{|transaction| transaction.amount()}
-        return spend_array.inject(0){|sum,x| sum + x }
-        #Thank you stack overflow!
-      end
 
 
 
