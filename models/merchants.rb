@@ -28,6 +28,15 @@ class Merchant
     return merchants.map{|merchant| Merchant.new(merchant)}
   end
 
+  # def self.find_by_name(name)
+  #   sql = "SELECT * FROM merchants
+  #   WHERE name = $1"
+  #   values = [name]
+  #   result = SqlRunner.run(sql, values)
+  #   return result
+  # end
+
+
 #UPDATE
   def update()
     sql = "UPDATE merchants SET (name) = (s1) WHERE id = $2"
@@ -46,5 +55,6 @@ class Merchant
     sql = "DELETE FROM merchants"
     SqlRunner.run(sql)
   end
+
 
 end

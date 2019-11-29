@@ -5,5 +5,5 @@ require_relative('./controllers/transaction_controller')
 # require_relative('controllers/tags_controller')
 
 get '/' do
-  erb(:index)
+  erb(:home)
 end
