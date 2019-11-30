@@ -1,0 +1,13 @@
+<p>Merchant Name:
+  <%= @merchant.name %></p>
+<p>Merchant ID:
+  <%= @merchant.id%></p>
+
+<form action="/merchants/<%= @merchant.id %>/delete" method="post">
+  <input type="submit" value="Delete Merchant">
+  <p>Warning: Merchants assigned to transactions may not be deleted.</p>
+</form>
+
+<p>
+  <a href="/merchants/<%= @merchant.id %>/edit">Edit Merchant</a>
+</p>
