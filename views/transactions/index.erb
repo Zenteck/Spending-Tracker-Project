@@ -1,9 +1,11 @@
 <h3>Full transaction record</h3>
 <hr/>
+<p>Total Expenditure: £<%= "%.2f"%Transaction.total_spend() %></p>
+<hr/>
 <% for transaction in @transactions %>
   <p>Merchant Name: <%= Merchant.find(transaction.merchant_id).name %></p>
 
-  <p>Amount: £<%= transaction.amount %></p>
+  <p>Amount: £<%= "%.2f"%transaction.amount %></p>
   <p><a href="/transactions/<%= transaction.id %>">Detailed View</a></p>
 <hr/>
 <% end %>

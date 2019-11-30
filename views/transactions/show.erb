@@ -2,9 +2,9 @@
 <p>Merchant ID: <%= @transaction.merchant_id%></p>
 <p>Purchase Tag: <%= Tag.find(@transaction.tag_id).type %></p>
 <p>Tag ID: <%= @transaction.tag_id %></p>
-<p>Amount: £<%= @transaction.amount %></p>
+<p>Amount: £<%="%.2f"% @transaction.amount %></p>
 
-<form action="/transactions/<%=@transaction.id%>/delete" method="post">
+<form action="/transactions/<%= @transaction.id %>/delete" method="post">
   <input type="submit" value="Delete Transaction">
 </form>
 

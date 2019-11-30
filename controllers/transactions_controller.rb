@@ -30,7 +30,7 @@ end
 get '/transactions/:id' do
   id = params[:id].to_i()
   @transaction = Transaction.find(id)
-  erb(:"Transactions/show")
+  erb(:"transactions/show")
 end
 
 #delete

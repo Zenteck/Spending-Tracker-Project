@@ -43,10 +43,10 @@ class Transaction
       def self.total_spend()
         sql = "SELECT * FROM transactions"
         transactions = SqlRunner.run(sql)
-        transaction_array = transactions.map{|transaction| Transaction.new(transaction)}
-        spend_array = transaction_array.map{|transaction| transaction.amount()}
-        return spend_array.inject(0){|sum,x| sum + x }
-        #Thank you stack overflow!
+        spending_array = transactions.map{|transaction| Transaction.new(transaction).amount}
+        total = 0
+        spending_array.each{|spend| total += spend}
+        return total
       end
 
     #UPDATE
@@ -69,8 +69,6 @@ class Transaction
         sql = "DELETE FROM transactions"
         SqlRunner.run(sql)
       end
-
-
 
 
 end
