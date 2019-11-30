@@ -60,7 +60,7 @@ transaction1 = Transaction.new(
     'merchant_id' => merchant1.id(),
     'tag_id'      => tag2.id(),
     'amount'      => 30.00,
-    'epoch'   => 1571685420
+    'top'         => Time.new(2019,10,03,23,58)
   }
 )
 # [sec,min,hour,day,month,year,wday,yday,isdst,zone]
@@ -71,7 +71,7 @@ transaction2 = Transaction.new(
     'merchant_id' => merchant2.id(),
     'tag_id'      => tag3.id(),
     'amount'      => 45.60,
-    'epoch'   => 1568729520
+    'top'         => Time.new(2019,11,07,12,42)
   }
 )
 transaction2.save()
@@ -81,7 +81,7 @@ transaction3 = Transaction.new(
     'merchant_id' => merchant3.id(),
     'tag_id'      => tag1.id(),
     'amount'      => 17.50,
-    'epoch'   => 1567424520
+    'top'         => Time.new(2019,10,03,21,31)
   }
 )
 transaction3.save()

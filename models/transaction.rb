@@ -4,24 +4,24 @@ require_relative('./tag.rb')
 
 class Transaction
   attr_reader :id
-  attr_accessor :merchant_id, :tag_id, :amount
+  attr_accessor :merchant_id, :tag_id, :amount, :top
 
   def initialize(info)
     @id = info['id'].to_i if info['id']
     @merchant_id = info['merchant_id'].to_i
     @tag_id = info['tag_id'].to_i
     @amount = info['amount'].to_f
-    @epoch = info['epoch'].to_i
+    @top = info['top'].to_i
   end
 
   # Which needs brackets with a single value? this or update?
   # CREATE
   def save
     sql = "INSERT INTO transactions
-        (merchant_id, tag_id, amount, epoch)
+        (merchant_id, tag_id, amount, top)
         VALUES ($1, $2, $3, $4)
         RETURNING id"
-    values = [@merchant_id, @tag_id, @amount, @epoch]
+    values = [@merchant_id, @tag_id, @amount, @top]
     result = SqlRunner.run(sql, values)
     @id = result[0]['id'].to_i
   end
@@ -46,19 +46,24 @@ class Transaction
     spending_array = transactions.map { |transaction| Transaction.new(transaction).amount }
     total = 0
     spending_array.each { |spend| total += spend }
-    total
+    return total
   end
 
   def time()
-    return Time.at(@epoch)
+    return Time.at(@top)
+  end
+
+  def self.timestamp(timestamp)
+    return Time.new(timestamp).to_i()
+  # Must be formatted like this!!!  (2019,10,21,22,42,0)
   end
 
   # UPDATE
   def update
     sql = "UPDATE transactions SET
-        (merchant_id, tag_id, amount, epoch)
+        (merchant_id, tag_id, amount, top)
         = ($1, $2, $3, $4) WHERE id = $5"
-    values = [@merchant_id, @tag_id, @amount, @epoch, @id]
+    values = [@merchant_id, @tag_id, @amount, @top, @id]
     SqlRunner.run(sql, values)
   end
 

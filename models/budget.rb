@@ -2,7 +2,7 @@ require_relative('../db/sql_runner')
 
 class Budget
 
-  attr_reader id
+  attr_reader :id
   attr_accessor :budget
 
   def initialize(info)
