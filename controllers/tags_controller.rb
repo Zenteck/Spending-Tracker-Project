@@ -20,8 +20,29 @@ post '/tags' do
 end
 
 #show
+get '/tags/:id' do
+  id = params[:id].to_i()
+  @tag = Tag.find(id)
+  erb(:"tags/show")
+end
 
 #delete
+post '/tags/:id/delete' do
+  id = params[:id].to_i()
+  tag = Tag.find(id)
+  tag.delete()
+  redirect '/tags'
+end
 
 #edit
+get '/tags/:id/edit' do
+  id = params[:id].to_i()
+  @tag = Tag.find(id)
+  erb(:"tags/edit")
+end
 #update
+post '/tags/:id' do
+  tag = Tag.new(params)
+  tag.update()
+  redirect '/tags'
+end

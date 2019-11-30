@@ -1,0 +1,23 @@
+<form action="/transactions/<%=@transaction.id %>" method="POST">
+
+  <label for="merchant">Merchant:</label>
+  <select name="merchant_id" id="merchant">
+    <% for merchant in @merchants %>
+      <option value="<%= merchant.id %>">
+        <%= merchant.name() %>
+      </option>
+    <% end %>
+  </select>
+
+  <label for="tag">Purchase Tag:</label>
+  <select name="tag_id" id="tag">
+    <% for tag in @tags %>
+      <option value="<%= tag.id %>">
+        <%= tag.type() %>
+      </option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="Edit Transaction">
+
+</form>
