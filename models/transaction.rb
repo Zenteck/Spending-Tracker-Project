@@ -3,7 +3,6 @@ require_relative('./merchant.rb')
 require_relative('./tag.rb')
 
 class Transaction
-  
   attr_reader :id
   attr_accessor :merchant_id, :tag_id, :amount
 
@@ -12,16 +11,17 @@ class Transaction
     @merchant_id = info['merchant_id'].to_i
     @tag_id = info['tag_id'].to_i
     @amount = info['amount'].to_f
+    @epoch = info['epoch'].to_i
   end
 
   # Which needs brackets with a single value? this or update?
   # CREATE
   def save
     sql = "INSERT INTO transactions
-        (merchant_id, tag_id, amount)
-        VALUES ($1, $2, $3)
+        (merchant_id, tag_id, amount, epoch)
+        VALUES ($1, $2, $3, $4)
         RETURNING id"
-    values = [@merchant_id, @tag_id, @amount]
+    values = [@merchant_id, @tag_id, @amount, @epoch]
     result = SqlRunner.run(sql, values)
     @id = result[0]['id'].to_i
   end
@@ -49,12 +49,16 @@ class Transaction
     total
   end
 
+  def time()
+    return Time.at(@epoch)
+  end
+
   # UPDATE
   def update
     sql = "UPDATE transactions SET
-        (merchant_id, tag_id, amount)
-        = ($1, $2, $3) WHERE id = $4"
-    values = [@merchant_id, @tag_id, @amount, @id]
+        (merchant_id, tag_id, amount, epoch)
+        = ($1, $2, $3, $4) WHERE id = $5"
+    values = [@merchant_id, @tag_id, @amount, @epoch, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -69,5 +73,4 @@ class Transaction
     sql = 'DELETE FROM transactions'
     SqlRunner.run(sql)
   end
-
 end
