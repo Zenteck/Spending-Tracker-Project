@@ -38,12 +38,12 @@ post '/transactions/:id/delete' do
   id = params[:id].to_i()
   transaction = Transaction.find(id)
   transaction.delete()
-  redirect '/transactions/deleted'
+  erb(:"transactions/deleted")
 end
 
-get '/transactions/deleted' do
-erb(:"transactions/deleted")
-end
+# get '/transactions/deleted' do
+# erb(:"transactions/deleted")
+# end
 
 #edit
 #update
