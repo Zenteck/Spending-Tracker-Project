@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner')
+require_relative('./transaction.rb')
 
 class Budget
 
@@ -49,6 +50,18 @@ class Budget
     budget = SqlRunner.run(sql)
     budget.map { |budget| Budget.new(budget) }
     return budget[0]['budget']
+  end
+
+  def self.check_spending()
+    budget = self.budget.to_f
+    spend = Transaction.total_spend
+    if spend > budget then
+      return "You are over your budget!"
+    elsif spend > ((budget/5) * 4) then
+      return "You are within 20% of your budget."
+    else
+      return "You are within your budget"
+    end
   end
 
 

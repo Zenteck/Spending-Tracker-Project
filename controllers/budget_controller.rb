@@ -5,7 +5,6 @@ require_relative('../models/budget.rb')
 #Create/save
 #show
 
-
 #edit
 get '/budget/:id/edit' do
   id = params[:id].to_i()
