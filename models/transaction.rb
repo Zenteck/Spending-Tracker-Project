@@ -54,6 +54,16 @@ class Transaction
     return Time.at(@top)
   end
 
+  def html_time()
+    return Time.at(@top).to_s.sub(' ','T').slice(0..15)
+    # chomp(':00 +0100').chomp(':00 +0000')
+  end
+
+  def nice_timestamp
+    Time.at(@top).strftime("%A %d %B at %H:%M")
+  end
+
+
   def self.timestamp(timestamp)
     return Time.new(timestamp).to_i()
   # Must be formatted like this!!!  (2019,10,21,22,42,0)

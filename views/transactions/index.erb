@@ -6,7 +6,7 @@
   <p>Merchant Name:
     <%= Merchant.find(transaction.merchant_id).name %></p>
 
-  <p>Timestamp: <%= transaction.time.strftime("%A %d %B at %H:%M") %></p>
+  <p>Timestamp: <%= transaction.nice_timestamp %></p>
 
   <p>Amount: £<%= "%.2f"%transaction.amount %></p>
   <p>
