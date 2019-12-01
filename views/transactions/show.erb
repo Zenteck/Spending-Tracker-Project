@@ -7,7 +7,7 @@
 <p>Tag ID:
   <%= @transaction.tag_id %></p>
 <p>Amount: £<%="%.2f"% @transaction.amount %></p>
-<p>Timestamp: <%= transaction.time.strftime("%A %d %B at %H:%M") %></p>
+<p>Timestamp: <%= @transaction.time.strftime("%A %d %B at %H:%M") %></p>
 
 <form action="/transactions/<%= @transaction.id %>/delete" method="post">
   <input type="submit" value="Delete Transaction">

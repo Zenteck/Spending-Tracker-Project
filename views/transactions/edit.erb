@@ -18,6 +18,12 @@
     <% end %>
   </select>
 
+  <label for="amount">Amount: £</label>
+  <input type="number" min="0" id="amount" name="amount" value="<%= @transaction.amount %>">
+
+  <label for="top">Timestamp(24hr):</label>
+  <input type="datetime-local" id="top" name="top" value="<%= @transaction.time.to_s.sub(' ','T').chomp(':00 +0100').chomp(':00 +0000') %>">
+
   <input type="submit" value="Save Changes">
 
 </form>

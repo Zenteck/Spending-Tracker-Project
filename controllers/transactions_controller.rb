@@ -17,6 +17,7 @@ end
 
 #Save
 post '/transactions' do
+  params['top'] = Time.parse(params['top'])
   transaction = Transaction.new(params)
   transaction.save()
   redirect to('/transactions/thanks')
@@ -52,6 +53,7 @@ end
 
 #update
 post '/transactions/:id' do
+  params['top'] = Time.parse(params['top'])
   transaction = Transaction.new(params)
   transaction.update()
   redirect '/transactions'
