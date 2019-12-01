@@ -14,6 +14,13 @@ post '/transactions/month' do
   erb(:"transactions/index")
 end
 
+post '/transactions/tag' do
+  tag_id = params['tag']
+  @transactions = Transaction.filter_tag(tag_id)
+  @tags = Tag.all()
+  erb(:"transactions/index")
+end
+
 #New
 get '/transactions/new' do
   @merchants = Merchant.all()

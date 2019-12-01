@@ -71,16 +71,23 @@ class Transaction
     return Time.at(@top).strftime("%A %d %B at %H:%M")
   end
 
-  def self.timestamp(timestamp)
-    return Time.new(timestamp).to_i()
-  # Must be formatted like this!!!  (2019,10,21,22,42,0)
-  end
+  # def self.timestamp(timestamp)
+  #   return Time.new(timestamp).to_i()
+  # # Must be formatted like this!!!  (2019,10,21,22,42,0)
+  # end
 
   def self.filter_month(month)
     sql = "SELECT * FROM transactions"
     transactions = SqlRunner.run(sql)
     transaction_array = transactions.map{|transaction|Transaction.new(transaction)}
     return transaction_array.select!{|transaction|Time.at(transaction.top).month == month}
+  end
+
+  def self.filter_tag(tag_id)
+    sql = "SELECT * FROM transactions"
+    transactions = SqlRunner.run(sql)
+    transaction_array = transactions.map{|transaction|Transaction.new(transaction)}
+    return transaction_array.select!{|transaction| transaction.tag_id == tag_id}
   end
 
   # UPDATE

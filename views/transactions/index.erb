@@ -20,6 +20,18 @@
   </select>
   <input type="submit" value="Filter by Month">
 </form>
+
+<form class="" action="/transactions/tag" method="post">
+  <select name="tag_id" id="tag">
+    <% for tag in @tags %>
+      <option value="<%= tag.id %>">
+        <%= tag.type() %>
+      </option>
+    <% end %>
+  </select>
+    <input type="submit" value="Filter by Tags">
+</form>
+
 <hr/>
 <% for transaction in @transactions %>
   <p>Merchant Name:
