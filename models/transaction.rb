@@ -76,6 +76,13 @@ class Transaction
   # Must be formatted like this!!!  (2019,10,21,22,42,0)
   end
 
+  def self.filter_month(month)
+    sql = "SELECT * FROM transactions"
+    transactions = SqlRunner.run(sql)
+    transaction_array = transactions.map{|transaction|Transaction.new(transaction)}
+    return transaction_array.select!{|transaction|Time.at(transaction.top).month == month}
+  end
+
   # UPDATE
   def update
     sql = "UPDATE transactions SET

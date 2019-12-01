@@ -8,6 +8,12 @@ get '/transactions' do
   erb(:"transactions/index")
 end
 
+post '/transactions/month' do
+    month = params['month'].to_i
+    @transactions = Transaction.filter_month(month)
+  erb(:"transactions/index")
+end
+
 #New
 get '/transactions/new' do
   @merchants = Merchant.all()
