@@ -4,7 +4,7 @@ require_relative('../models/tag.rb')
 
 #index
 get '/transactions' do
-  @transactions = Transaction.all()
+  @transactions = Transaction.sort_top()
   erb(:"transactions/index")
 end
 

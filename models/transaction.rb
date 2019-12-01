@@ -31,8 +31,16 @@ class Transaction
   def self.all
     sql = 'SELECT * FROM transactions'
     transactions = SqlRunner.run(sql)
-    transactions.map { |transaction| Transaction.new(transaction) }
+    return transactions.map { |transaction| Transaction.new(transaction) }
   end
+
+  def self.sort_top
+    # sql = 'SELECT * FROM transactions'
+    # transactions = SqlRunner.run(sql)
+    # transactions.map { |transaction| Transaction.new(transaction) }
+    return self.all.sort_by{ |transaction| transaction.top}.reverse
+  end
+
 
   def self.find(id)
     sql = 'SELECT * FROM transactions WHERE id = $1'
@@ -60,9 +68,8 @@ class Transaction
   end
 
   def nice_timestamp
-    Time.at(@top).strftime("%A %d %B at %H:%M")
+    return Time.at(@top).strftime("%A %d %B at %H:%M")
   end
-
 
   def self.timestamp(timestamp)
     return Time.new(timestamp).to_i()

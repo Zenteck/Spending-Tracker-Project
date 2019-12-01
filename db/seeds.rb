@@ -1,8 +1,10 @@
 require_relative( "../models/merchant.rb" )
 require_relative( "../models/tag.rb" )
 require_relative( "../models/transaction.rb" )
+require_relative( "../models/budget.rb" )
 require("pry")
 
+Budget.delete_all()
 Transaction.delete_all()
 Tag.delete_all()
 Merchant.delete_all()
@@ -85,6 +87,14 @@ transaction3 = Transaction.new(
   }
 )
 transaction3.save()
+
+budget1 = Budget.new(
+  {
+    'budget' => '10.00'
+  }
+
+)
+budget1.save
 
 
 binding.pry
