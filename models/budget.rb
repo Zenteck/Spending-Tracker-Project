@@ -64,5 +64,7 @@ class Budget
     end
   end
 
+  #try returning a percentage
+
 
 end

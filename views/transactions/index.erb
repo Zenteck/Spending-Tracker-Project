@@ -1,4 +1,6 @@
 <h3>Full transaction record</h3>
+
+
 <hr/>
 <p>Total Expenditure: £<%= "%.2f"%Transaction.total_spend() %></p>
 
@@ -51,6 +53,7 @@
 <!-- If I leave this form out, the months filter still works.... WTF? -->
 
 <hr/>
+<h4>Displayed in reverse chronological order</h4>
 <% for transaction in @transactions %>
   <p>Merchant Name:
     <%= Merchant.find(transaction.merchant_id).name %></p>

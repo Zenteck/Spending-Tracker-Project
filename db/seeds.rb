@@ -32,6 +32,19 @@ merchant3 = Merchant.new(
 )
 merchant3.save
 
+merchant4 = Merchant.new(
+  {
+    'name' => 'Woolworths'
+  }
+)
+merchant4.save()
+
+merchant5 = Merchant.new(
+  {
+    'name' => 'Maplin'
+  }
+)
+merchant5.save()
 
 #TAGS
 tag1 = Tag.new(
@@ -54,6 +67,15 @@ tag3 = Tag.new(
   }
 )
 tag3.save()
+
+tag4 = Tag.new(
+  {
+    'type' => 'random junk'
+  }
+)
+tag4.save()
+
+tag5
 
 
 # TRANSACTIONS

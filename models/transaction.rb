@@ -1,7 +1,7 @@
 require_relative('../db/sql_runner.rb')
 require_relative('./merchant.rb')
 require_relative('./tag.rb')
-require('time')
+# require('time')
 
 class Transaction
   attr_reader :id

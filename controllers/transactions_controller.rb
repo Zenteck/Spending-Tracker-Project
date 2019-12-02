@@ -1,7 +1,6 @@
 require_relative('../models/transaction.rb')
 require_relative('../models/merchant.rb')
 require_relative('../models/tag.rb')
-require('pry')
 
 #index
 get '/transactions' do

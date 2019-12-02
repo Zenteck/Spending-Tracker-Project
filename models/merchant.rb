@@ -20,18 +20,18 @@ class Merchant
     @id = result[0]['id'].to_i
   end
 
-  def self.find(id)
-    sql = 'SELECT * FROM merchants WHERE id = $1'
-    values = [id]
-    merchant = SqlRunner.run(sql, values)[0]
-    return Merchant.new(merchant)
-  end
-
   # READ
   def self.all()
     sql = 'SELECT * FROM merchants'
     merchants = SqlRunner.run(sql)
     merchants.map { |merchant| Merchant.new(merchant) }
+  end
+
+  def self.find(id)
+    sql = 'SELECT * FROM merchants WHERE id = $1'
+    values = [id]
+    merchant = SqlRunner.run(sql, values)[0]
+    return Merchant.new(merchant)
   end
 
   # def self.find_by_name(name)

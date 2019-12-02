@@ -4,6 +4,7 @@ require_relative('../models/budget.rb')
 #New
 #Create/save
 #show
+#none of these are really needed.
 
 #edit
 get '/budget/:id/edit' do
