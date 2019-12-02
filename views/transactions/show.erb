@@ -6,8 +6,10 @@
   <%= Tag.find(@transaction.tag_id).type %></p>
 <p>Tag ID:
   <%= @transaction.tag_id %></p>
-<p>Amount: £<%="%.2f"% @transaction.amount %></p>
-<p>Timestamp: <%= @transaction.nice_timestamp %></p>
+<p>Amount: £
+  <%="%.2f"% @transaction.amount %></p>
+<p>Timestamp:
+  <%= @transaction.nice_timestamp %></p>
 
 <form action="/transactions/<%= @transaction.id %>/delete" method="post">
   <input type="submit" value="Delete Transaction">
@@ -16,3 +18,14 @@
 <p>
   <a href="/transactions/<%= @transaction.id %>/edit">Edit Transaction</a>
 </p>
+
+<form class="" action="/transactions/tag" method="post">
+  <select name="tag_id" id="tag">
+    <% for tag in @tags %>
+      <option value="<%= tag.id %>">
+        <%= tag.type %>
+      </option>
+    <% end %>
+  </select>
+  <input type="submit" name="tag_id" value="Filter by Tag">
+</form>

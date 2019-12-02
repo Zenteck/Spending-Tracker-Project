@@ -90,6 +90,13 @@ class Transaction
     return transaction_array.select!{|transaction| transaction.tag_id == tag_id}
   end
 
+  def self.filter_merchant(tag_id)
+    sql = "SELECT * FROM transactions"
+    transactions = SqlRunner.run(sql)
+    transaction_array = transactions.map{|transaction|Transaction.new(transaction)}
+    return transaction_array.select!{|transaction| transaction.merchant_id == merchant_id}
+  end
+
   # UPDATE
   def update
     sql = "UPDATE transactions SET

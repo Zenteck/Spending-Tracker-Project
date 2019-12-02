@@ -1,23 +1,26 @@
 require_relative('../models/transaction.rb')
 require_relative('../models/merchant.rb')
 require_relative('../models/tag.rb')
+require('pry')
 
 #index
 get '/transactions' do
+  @tags = Tag.all()
   @transactions = Transaction.sort_top()
   erb(:"transactions/index")
 end
 
 post '/transactions/month' do
-    month = params['month'].to_i
-    @transactions = Transaction.filter_month(month)
+  month = params['month'].to_i()
+  @tags = Tag.all()
+  @transactions = Transaction.filter_month(month)
   erb(:"transactions/index")
 end
 
 post '/transactions/tag' do
-  tag_id = params['tag']
-  @transactions = Transaction.filter_tag(tag_id)
+  tag_id = params['tag_id'].to_i()
   @tags = Tag.all()
+  @transactions = Transaction.filter_tag(tag_id)
   erb(:"transactions/index")
 end
 
