@@ -1,11 +1,4 @@
 require_relative('../models/budget.rb')
-require('pry')
-
-#index
-#New
-#Create/save
-#show
-#none of these are really needed.
 
 #edit
 get '/budget/edit' do

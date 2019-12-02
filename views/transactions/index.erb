@@ -1,9 +1,8 @@
 <h3>Full transaction record</h3>
 
-
-<hr/>
 <p>Total Expenditure: £<%= "%.2f"%Transaction.total_spend() %></p>
 
+<p><a href="/transactions/new">Add New Transaction</a></p>
 <hr/>
 
 <form class="" action="/transactions/month" method="post">
@@ -55,12 +54,15 @@
 <hr/>
 <h4>Displayed in reverse chronological order</h4>
 <% for transaction in @transactions %>
+  <p>Amount: £<%= "%.2f"%transaction.amount %></p>
+
   <p>Merchant Name:
     <%= Merchant.find(transaction.merchant_id).name %></p>
 
   <p>Timestamp: <%= transaction.nice_timestamp %></p>
 
-  <p>Amount: £<%= "%.2f"%transaction.amount %></p>
+  <p>Purchase Tag:
+    <%= Tag.find(transaction.tag_id).type %></p>
   <p>
     <a href="/transactions/<%= transaction.id %>">Detailed View</a>
   </p>

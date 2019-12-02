@@ -1,13 +1,15 @@
-<p>Merchant Name:
+<p>Tag Type:
   <%= @tag.type %></p>
-<p>Merchant ID:
+<p>Tag ID:
   <%= @tag.id%></p>
+<p>You have spent £<%= '%.2f' %Transaction.filter_spend(
+  Transaction.filter_tag(@tag.id)) %> on these items.</p>
+
+<p>
+  <a href="/tags/<%= @tag.id %>/edit">Edit Tag</a>
+</p>
 
 <form action="/tags/<%= @tag.id %>/delete" method="post">
   <input type="submit" value="Delete Tag">
   <p>Warning: Tags still assigned to transactions may not be deleted.</p>
 </form>
-
-<p>
-  <a href="/tags/<%= @tag.id %>/edit">Edit Tag</a>
-</p>

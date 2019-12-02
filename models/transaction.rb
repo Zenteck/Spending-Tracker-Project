@@ -41,7 +41,6 @@ class Transaction
     return self.all.sort_by{ |transaction| transaction.top}.reverse
   end
 
-
   def self.find(id)
     sql = 'SELECT * FROM transactions WHERE id = $1'
     values = [id]
@@ -82,19 +81,30 @@ class Transaction
     transaction_array = transactions.map{|transaction|Transaction.new(transaction)}
     return transaction_array.select!{|transaction|Time.at(transaction.top).month == month}
   end
+  #This one has to be this way, I think
 
   def self.filter_tag(tag_id)
-    sql = "SELECT * FROM transactions"
-    transactions = SqlRunner.run(sql)
-    transaction_array = transactions.map{|transaction|Transaction.new(transaction)}
-    return transaction_array.select!{|transaction| transaction.tag_id == tag_id}
+    sql = "SELECT * FROM transactions WHERE tag_id = $1"
+    values = [tag_id]
+    transactions = SqlRunner.run(sql, values)
+    return transaction_array = transactions.map{|transaction|Transaction.new(transaction)}
+    # return transaction_array.select!{|transaction| transaction.tag_id == tag_id}
   end
 
+#Why the hell didn't I do it this way to begin with!?
   def self.filter_merchant(merchant_id)
-    sql = "SELECT * FROM transactions"
-    transactions = SqlRunner.run(sql)
-    transaction_array = transactions.map{|transaction|Transaction.new(transaction)}
-    return transaction_array.select!{|transaction| transaction.merchant_id == merchant_id}
+    sql = "SELECT * FROM transactions WHERE merchant_id = $1"
+    values = [merchant_id]
+    transactions = SqlRunner.run(sql, values)
+    return transaction_array = transactions.map{|transaction|Transaction.new(transaction)}
+    # return transaction_array.select!{|transaction| transaction.merchant_id == merchant_id}
+  end
+
+  def self.filter_spend(filtered_transactions)
+    spending_array = filtered_transactions.map{|transaction| transaction.amount}
+    total = 0
+    spending_array.each{|spend| total += spend}
+    return total
   end
 
   # UPDATE
