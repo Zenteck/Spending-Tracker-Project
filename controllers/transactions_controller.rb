@@ -6,6 +6,7 @@ require('pry')
 #index
 get '/transactions' do
   @tags = Tag.all()
+  @merchants = Merchant.all()
   @transactions = Transaction.sort_top()
   erb(:"transactions/index")
 end
@@ -13,6 +14,7 @@ end
 post '/transactions/month' do
   month = params['month'].to_i()
   @tags = Tag.all()
+  @merchants = Merchant.all()
   @transactions = Transaction.filter_month(month)
   erb(:"transactions/index")
 end
@@ -20,7 +22,16 @@ end
 post '/transactions/tag' do
   tag_id = params['tag_id'].to_i()
   @tags = Tag.all()
+  @merchants = Merchant.all()
   @transactions = Transaction.filter_tag(tag_id)
+  erb(:"transactions/index")
+end
+
+post '/transactions/merchant' do
+  merchant_id = params['merchant_id'].to_i()
+  @tags = Tag.all()
+  @merchants = Merchant.all()
+  @transactions = Transaction.filter_merchant(merchant_id)
   erb(:"transactions/index")
 end
 

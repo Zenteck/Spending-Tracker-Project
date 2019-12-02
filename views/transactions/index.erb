@@ -1,7 +1,9 @@
 <h3>Full transaction record</h3>
 <hr/>
 <p>Total Expenditure: £<%= "%.2f"%Transaction.total_spend() %></p>
+
 <hr/>
+
 <form class="" action="/transactions/month" method="post">
     <select id="month" name="month">
     <option value=''>--Select Month--</option>
@@ -20,6 +22,7 @@
   </select>
   <input type="submit" value="Filter by Month">
 </form>
+
 <hr/>
 
 <form class="" action="/transactions/tag" method="post">
@@ -30,7 +33,20 @@
      </option>
     <% end %>
   </select>
-    <input type="submit" value="Filter by Tags">
+    <input type="submit" value="Filter by Tag">
+</form>
+
+<hr/>
+
+<form class="" action="/transactions/merchant" method="post">
+  <select name="merchant_id" id="merchant_id">
+    <% for merchant in @merchants %>
+      <option value="<%= merchant.id %>">
+        <%= merchant.name() %>
+     </option>
+    <% end %>
+  </select>
+    <input type="submit" value="Filter by Merchant">
 </form>
 <!-- If I leave this form out, the months filter still works.... WTF? -->
 
