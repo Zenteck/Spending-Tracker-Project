@@ -56,10 +56,10 @@
 <% for transaction in @transactions %>
   <p>Amount: £<%= "%.2f"%transaction.amount %></p>
 
+  <p>Timestamp: <%= transaction.nice_timestamp %></p>
+
   <p>Merchant Name:
     <%= Merchant.find(transaction.merchant_id).name %></p>
-
-  <p>Timestamp: <%= transaction.nice_timestamp %></p>
 
   <p>Purchase Tag:
     <%= Tag.find(transaction.tag_id).type %></p>

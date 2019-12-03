@@ -9,7 +9,6 @@ class Merchant
     @name = info['name']
   end
 
-  # Which needs brackets with a single value? this or update?
   # CREATE
   def save()
     sql = "INSERT INTO merchants
@@ -33,14 +32,6 @@ class Merchant
     merchant = SqlRunner.run(sql, values)[0]
     return Merchant.new(merchant)
   end
-
-  # def self.find_by_name(name)
-  #   sql = "SELECT * FROM merchants
-  #   WHERE name = $1"
-  #   values = [name]
-  #   result = SqlRunner.run(sql, values)
-  #   return result
-  # end
 
   # UPDATE
   def update()

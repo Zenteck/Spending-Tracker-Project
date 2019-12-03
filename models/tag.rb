@@ -9,7 +9,6 @@ class Tag
     @type = info['type']
   end
 
-  # Which needs brackets with a single value? this or update?
   # CREATE
   def save
     sql = "INSERT INTO tags

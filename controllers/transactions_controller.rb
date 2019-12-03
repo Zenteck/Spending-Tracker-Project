@@ -34,6 +34,9 @@ post '/transactions/merchant' do
   erb(:"transactions/index")
 end
 
+
+
+
 #New
 get '/transactions/new' do
   @merchants = Merchant.all()
