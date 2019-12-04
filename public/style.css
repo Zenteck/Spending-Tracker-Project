@@ -9,24 +9,33 @@ body {
    list-style-type: none;
    margin: 0;
    padding: 0;
+   border: 2px solid #e7e7e7;
 }
 
 .topnav ul li{
-  display: inline;
+
   float: left;
   border-right;
+
 }
 
 .topnav ul li a{
   background-color: lightgrey;
+  display: inline block;
   overflow: hidden;
   justify-content: center;
-
-  padding: 8px 16px;
   text-decoration: none;
   background-color: #dddddd;
-
+  text-align: center;
+  padding: 16px 24px;
 }
 .topnav ul li a .active) {
   background-color: #4CAF50;
   color: white;
+
+}
+
+.topnav ul li a:hover {
+  background-color: darkblue;
+  color: cyan;
+}
