@@ -23,5 +23,5 @@ CREATE TABLE transactions (
   merchant_id INT REFERENCES merchants(id),
   tag_id INT REFERENCES tags(id),
   amount DECIMAL(18, 2),
-  top BIGINT
+  time_log BIGINT
 );
