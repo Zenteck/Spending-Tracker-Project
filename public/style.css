@@ -1,0 +1,32 @@
+body {
+  color: darkblue;
+  background-color: lightblue;
+  border-left-style: groove;
+  border-width: thick;
+}
+
+.topnav ul{
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+}
+
+.topnav ul li{
+  display: inline;
+  float: left;
+  border-right;
+}
+
+.topnav ul li a{
+  background-color: lightgrey;
+  overflow: hidden;
+  justify-content: center;
+
+  padding: 8px 16px;
+  text-decoration: none;
+  background-color: #dddddd;
+
+}
+.topnav ul li a .active) {
+  background-color: #4CAF50;
+  color: white;

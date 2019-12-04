@@ -2,6 +2,7 @@ require_relative( "../models/merchant.rb" )
 require_relative( "../models/tag.rb" )
 require_relative( "../models/transaction.rb" )
 require_relative( "../models/budget.rb" )
+require('time')
 require("pry")
 
 Budget.delete_all()
@@ -75,7 +76,12 @@ tag4 = Tag.new(
 )
 tag4.save()
 
-tag5
+tag5 = Tag.new(
+  {
+    'type' => 'overpriced  tech'
+  }
+)
+tag5.save()
 
 
 # TRANSACTIONS
@@ -84,7 +90,7 @@ transaction1 = Transaction.new(
     'merchant_id' => merchant1.id(),
     'tag_id'      => tag2.id(),
     'amount'      => 30.00,
-    'top'         => Time.parse("2019-10-03T23:58")
+    'time_log'         => Time.parse("2019-10-03T23:58")
   }
 )
 # [sec,min,hour,day,month,year,wday,yday,isdst,zone]
@@ -95,7 +101,7 @@ transaction2 = Transaction.new(
     'merchant_id' => merchant2.id(),
     'tag_id'      => tag3.id(),
     'amount'      => 45.60,
-    'top'         => Time.parse("2019-11-07T12:42")
+    'time_log'         => Time.parse("2019-11-07T12:42")
   }
 )
 transaction2.save()
@@ -105,10 +111,30 @@ transaction3 = Transaction.new(
     'merchant_id' => merchant3.id(),
     'tag_id'      => tag1.id(),
     'amount'      => 17.50,
-    'top'         => Time.parse("2019-10-03T21:31")
+    'time_log'         => Time.parse("2019-10-03T21:31")
   }
 )
 transaction3.save()
+
+transaction4 = Transaction.new(
+  {
+    'merchant_id' => merchant4.id(),
+    'tag_id'      => tag4.id(),
+    'amount'      => 4.50,
+    'time_log'         => Time.parse("2019-08-12T10:15")
+  }
+)
+transaction4.save()
+
+transaction5 = Transaction.new(
+  {
+    'merchant_id' => merchant5.id(),
+    'tag_id'      => tag5.id(),
+    'amount'      => 17.50,
+    'time_log'         => Time.parse("2019-09-22T14:52")
+  }
+)
+transaction5.save()
 
 budget1 = Budget.new(
   {

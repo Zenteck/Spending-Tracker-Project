@@ -6,7 +6,7 @@ require_relative('../models/tag.rb')
 get '/transactions' do
   @tags = Tag.all()
   @merchants = Merchant.all()
-  @transactions = Transaction.sort_top()
+  @transactions = Transaction.sort_time_log()
   erb(:"transactions/index")
 end
 
@@ -43,7 +43,7 @@ end
 
 #Save
 post '/transactions' do
-  params['top'] = Time.parse(params['top'])
+  params['time_log'] = Time.parse(params['time_log'])
   transaction = Transaction.new(params)
   transaction.save()
   redirect to('/transactions/thanks')
@@ -79,7 +79,7 @@ end
 
 #update
 post '/transactions/:id' do
-  params['top'] = Time.parse(params['top'])
+  params['time_log'] = Time.parse(params['time_log'])
   transaction = Transaction.new(params)
   transaction.update()
   redirect '/transactions'

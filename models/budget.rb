@@ -27,10 +27,9 @@ class Budget
     return budget_hash[0]['id']
   end
 
-  def self.find(id)
-    sql = 'SELECT * FROM budgets WHERE id = $1'
-    values = [id]
-    budget = SqlRunner.run(sql, values)[0]
+  def self.find()
+    sql = 'SELECT * FROM budgets'
+    budget = SqlRunner.run(sql)[0]
     return Budget.new(budget)
   end
 
@@ -39,9 +38,9 @@ class Budget
     SqlRunner.run(sql)
   end
 
-  def update()
-    sql = 'UPDATE budgets SET budget = $1 WHERE id = $2'
-    values = [@budget, @id]
+  def self.update(new_budget)
+    sql = 'UPDATE budgets SET budget = $1'
+    values = [new_budget.budget]
     SqlRunner.run(sql, values)
   end
 
@@ -55,16 +54,7 @@ class Budget
   def self.check_spending()
     budget = self.budget.to_f
     spend = Transaction.total_spend
-    if spend > budget then
-      return "You are over your budget!"
-    elsif spend > ((budget/5) * 4) then
-      return "You are within 20% of your budget."
-    else
-      return "You are within your budget"
-    end
+    return spend / (budget / 100)
   end
-
-  #try returning a percentage
-
 
 end

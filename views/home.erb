@@ -1,6 +1,10 @@
 <div class="Blue">
   <h1 class="title">Why am I Skint?</h1>
-  <h3> Your current budget is set to £<%= Budget.budget %></h3>
-  <h3> You have spent £<%= Transaction.total_spend %></h3>
-  <h3><%= Budget.check_spending %></h3>
+  <h3> Your current budget is set to £<%= "%.2f"%Budget.budget %></h3>
+  <h3> You have spent £<%= "%.2f"% Transaction.total_spend %></h3>
+  <% if Budget.check_spending <= 100 %>
+    <h3>You have spent <%= Budget.check_spending.round(1) %>% of your budget.</h3>
+  <% elsif Budget.check_spending > 100%>
+    <h3>You are over your budget by <%= (Budget.check_spending - 100).round(1) %>%!</h3>
+  <% end %>
 </div>
